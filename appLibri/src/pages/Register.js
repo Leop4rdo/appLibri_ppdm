@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 
 import COLORS from '../const/colors';
@@ -7,6 +7,27 @@ import Input from '../components/input';
 import Button from '../components/button';
 
 const Register = () => {
+
+  const [inputValues, setInputValues] = useState({
+    title : "",
+    description : "",
+    cover : ""
+  })
+
+  const handleChange = (value, key) => setInputValues({
+      ...inputValues,
+      [key]: value
+  })
+
+  const validate = (key) => (inputValues[key]) ? true : false
+
+  const onSubmit = () => {
+    if (!validate('title')) alert('Titulo invalido!');
+    if (!validate('description')) alert('Descrição invalida!');
+    if (!validate('cover')) alert('Capa invalida!');
+
+    alert('Livro cadastrado com sucesso!!!');
+  }
 
 
   return (
@@ -17,10 +38,10 @@ const Register = () => {
 
         <View style={styles.viewForm}>
 
-          <Input label="TITULO" placeholder="ex: O morro dos ventos uivantes"/>
-          <Input label="DESCRIÇÃO" placeholder="ex: Um romance muito pica"/>
-          <Input label="CAPA"/>
-          <Button title="CADASTRAR"/>
+          <Input label="TITULO" placeholder="ex: O morro dos ventos uivantes" onChangeText={(value) => handleChange(value, "title")} validate={() => validate("title")}/>
+          <Input label="DESCRIÇÃO" placeholder="ex: Um romance muito pica" onChangeText={(value) => handleChange(value, "description")} validate={() => validate("description")}/>
+          <Input label="CAPA" onChangeText={(value) => handleChange(value, "cover")} validate={() => validate("cover")}/>
+          <Button title="CADASTRAR" onPress={onSubmit}/>
 
         </View>
       </ScrollView>
