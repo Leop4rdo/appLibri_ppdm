@@ -6,9 +6,9 @@ import COLORS from '../const/colors';
 import Input from '../components/input';
 import Button from '../components/button';
 
-const Cadastro = () => {
+const Register = () => {
 
-  
+
   return (
     <SafeAreaView style={styles.safe} >
       <ScrollView style={styles.scroll}>
@@ -17,9 +17,9 @@ const Cadastro = () => {
 
         <View style={styles.viewForm}>
 
-          <Input label="TITULO" />
-          <Input label="DESCRIÇÃO" />
-          <Input label="CAPA" />
+          <Input label="TITULO" placeholder="ex: O morro dos ventos uivantes"/>
+          <Input label="DESCRIÇÃO" placeholder="ex: Um romance muito pica"/>
+          <Input label="CAPA"/>
           <Button title="CADASTRAR"/>
 
         </View>
@@ -29,7 +29,6 @@ const Cadastro = () => {
 };
 
 const styles = StyleSheet.create({
-
   safe: {
     flex: 1,
     backgroundColor: COLORS.white,
@@ -48,9 +47,7 @@ const styles = StyleSheet.create({
 
   viewForm: {
     marginVertical: 20,
-
   },
-
 });
 
-export default Cadastro;
+export default Register

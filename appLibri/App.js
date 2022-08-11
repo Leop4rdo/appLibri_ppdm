@@ -2,18 +2,14 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 // import Login from "./src/telas/Login";
-import Cadastro from "./src/telas/Cadastro";
+import Register from "./src/pages/Register";
 
 const App = () => {
 
   const nome = 'SENAI - JANDIRA';
 
   return (
-    // <View>
-    //    <Text style = {estilo.titulo}>{nome}</Text>
-    // </View>  
-    // <Login />  
-    <Cadastro />
+    <Register />
   );
 }
 
@@ -21,7 +17,7 @@ const estilo = StyleSheet.create({
 
   container: {},
 
-  titulo: {
+  title: {
     width: "100%",
     backgroundColor: "#f00",
     textAlign: "center",

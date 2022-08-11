@@ -3,16 +3,16 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 
 import COLORS from "../const/colors";
 
-const Input = ({ label }) => {
+const Input = ({ label, placeholder }) => {
 
     return (
 
-        <View style={styles.formContainer} >
+        <View style={styles.container} >
 
-            <Text style={styles.inputLabel} >{label}</Text>
+            <Text style={styles.label} >{label}</Text>
 
             <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} />
+                <TextInput style={styles.input} placeholder={placeholder}/>
             </View>
 
         </View>
@@ -22,12 +22,12 @@ const Input = ({ label }) => {
 
 const styles = StyleSheet.create({
 
-    formContainer: {
+    container: {
         marginBottom: 20,
 
     },
 
-    inputLabel: {
+    label: {
         marginVertical: 5,
         fontSize: 15,
         color: COLORS.gray,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
 
     textInput: {
-        color: COLORS.darkBlue,
+        color: COLORS.blue,
         flex: 1,
     }
 
