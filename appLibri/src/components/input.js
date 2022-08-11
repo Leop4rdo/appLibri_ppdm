@@ -7,12 +7,12 @@ const Input = ({ label }) => {
 
     return (
 
-        <View style={estilos.formContainer} >
+        <View style={styles.formContainer} >
 
-            <Text style={estilos.inputLabel} >{label}</Text>
+            <Text style={styles.inputLabel} >{label}</Text>
 
-            <View style={estilos.inputContainer}>
-                <TextInput style={estilos.textInput} />
+            <View style={styles.inputContainer}>
+                <TextInput style={styles.textInput} />
             </View>
 
         </View>
@@ -20,7 +20,7 @@ const Input = ({ label }) => {
     );
 }
 
-const estilos = StyleSheet.create({
+const styles = StyleSheet.create({
 
     formContainer: {
         marginBottom: 20,

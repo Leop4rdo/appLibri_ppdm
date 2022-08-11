@@ -3,18 +3,17 @@ import { Text, View, StyleSheet } from "react-native";
 
 const Login = () => {
 
-    const nome = 'Tela de Login';
   
     return (
       <View>
-        <Text style = {estilo.titulo}>{nome}</Text>
+        <Text style = {styles.title}>Login</Text>
       </View>    
     );
 }
 
-const estilo = StyleSheet.create({
+const styles = StyleSheet.create({
 
-  titulo: {
+  title: {
     width: "100%",
     backgroundColor: "#f00",
     textAlign: "center",

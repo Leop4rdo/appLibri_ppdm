@@ -7,13 +7,13 @@ const Button = ({title}) => {
 
     return (
 
-        <TouchableOpacity style={estilos.button} activeOpacity={0.5} >
-            <Text style={estilos.title} >{title}</Text>
+        <TouchableOpacity style={styles.button} activeOpacity={0.5} >
+            <Text style={styles.title} >{title}</Text>
         </TouchableOpacity>
     );
 }
 
-const estilos = StyleSheet.create({
+const styles = StyleSheet.create({
 
     button: {
         height: 55,

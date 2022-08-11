@@ -7,15 +7,15 @@ import Input from '../components/input';
 import Button from '../components/button';
 
 const Cadastro = () => {
-  const nome = 'Tela de Cadastro';
 
+  
   return (
-    <SafeAreaView style={estilos.safe} >
-      <ScrollView style={estilos.scroll}>
+    <SafeAreaView style={styles.safe} >
+      <ScrollView style={styles.scroll}>
 
-        <Text style={estilos.textTitle}>CADASTRO DE LIVROS</Text>
+        <Text style={styles.textTitle}>CADASTRO DE LIVROS</Text>
 
-        <View style={estilos.viewForm}>
+        <View style={styles.viewForm}>
 
           <Input label="TITULO" />
           <Input label="DESCRIÇÃO" />
@@ -28,7 +28,7 @@ const Cadastro = () => {
   );
 };
 
-const estilos = StyleSheet.create({
+const styles = StyleSheet.create({
 
   safe: {
     flex: 1,

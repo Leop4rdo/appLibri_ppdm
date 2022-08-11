@@ -3,11 +3,9 @@ import { Text, View, StyleSheet } from "react-native";
 
 const Home = () => {
 
-    const nome = 'Home';
-  
     return (
       <View>
-        <Text>{nome}</Text>
+        <Text>Home</Text>
       </View>    
     );
 } 
