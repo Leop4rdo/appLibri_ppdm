@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
+import Icon from "react-native-vector-icons/MaterialCommunityIcons" 
+
 import COLORS from "../const/colors";
 
 export const inputStatus = {
@@ -53,7 +55,7 @@ class InputStyleBuilder {
     }
 }
 
-const Input = ({ label, placeholder, onChangeText, validate }) => {
+const Input = ({ label, placeholder, onChangeText, validate, value, icon }) => {
     const [status, setStatus] = useState(inputStatus.NEUTRAL);
 
     const validateField= () => {
@@ -80,13 +82,16 @@ const Input = ({ label, placeholder, onChangeText, validate }) => {
                 {label}
             </Text>
 
+
             <View style={containerStyleBuilder.setStatus(status).build()}>
+                <Icon name={icon} size={24} color={COLORS.black} style={styles.icon}/>
                 <TextInput 
-                    style={styles.input} 
+                    style={styles.textInput} 
                     placeholder={placeholder} 
                     onChangeText={onChangeText}
                     onFocus={() => (status !== inputStatus.INVALID) ? setStatus(inputStatus.HOVER) : null}
                     onBlur={() => {validateField()}}
+                    value={value}
                 />
             </View>
         </View>
@@ -94,33 +99,29 @@ const Input = ({ label, placeholder, onChangeText, validate }) => {
 }
 
 const styles = StyleSheet.create({
-
     container: {
-        marginBottom: 20,
+        marginBottom: 24,
     },
 
     label: {
-        marginVertical: 5,
-        fontSize: 15,
-        color: COLORS.gray,
+        marginVertical: 4,
+        fontSize: 16,
+        color: COLORS.black,
     },
 
-    focusLabel : {
-        color: COLORS.blue
-    },
+    icon : { marginRight : 4 },  
 
-    invalidLabel : {
-        color: COLORS.red,
-    },
+    focusLabel : { color: COLORS.blue },
+
+    invalidLabel : { color: COLORS.red },
 
     inputContainer: {
-        height: 60,
+        height: 64,
         backgroundColor: COLORS.light,
         flexDirection: "row",
-        paddingHorizontal: 15,
+        paddingHorizontal: 12,
         borderWidth: 0.5,
         alignItems: "center",
-
     },
 
     focusInputContainer : {
@@ -134,10 +135,10 @@ const styles = StyleSheet.create({
     },
 
     textInput: {
+        width: '100%',
+        height: '100%',
         color: COLORS.blue,
-        flex: 1,
     }
-
 });
 
 export default Input;

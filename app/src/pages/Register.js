@@ -22,11 +22,21 @@ const Register = () => {
   const validate = (key) => (inputValues[key]) ? true : false
 
   const onSubmit = () => {
-    if (!validate('title')) alert('Titulo invalido!');
-    if (!validate('description')) alert('Descrição invalida!');
-    if (!validate('cover')) alert('Capa invalida!');
+    if (!validate('title')) return alert('Titulo invalido!');
+    if (!validate('description')) return alert('Descrição invalida!');
+    if (!validate('cover')) return alert('Capa invalida!');
 
     alert('Livro cadastrado com sucesso!!!');
+
+    resetState();
+  }
+
+  const resetState = () => {
+    setInputValues({
+      title : "",
+      description : "",
+      cover : ""
+    })
   }
 
 
@@ -38,9 +48,9 @@ const Register = () => {
 
         <View style={styles.viewForm}>
 
-          <Input label="TITULO" placeholder="ex: O morro dos ventos uivantes" onChangeText={(value) => handleChange(value, "title")} validate={() => validate("title")}/>
-          <Input label="DESCRIÇÃO" placeholder="ex: Um romance muito pica" onChangeText={(value) => handleChange(value, "description")} validate={() => validate("description")}/>
-          <Input label="CAPA" onChangeText={(value) => handleChange(value, "cover")} validate={() => validate("cover")}/>
+          <Input icon="book-outline" label="TITULO" placeholder="ex: O morro dos ventos uivantes" onChangeText={(value) => handleChange(value, "title")} validate={() => validate("title")} value={inputValues.title}/>
+          <Input icon="card-text-outline" label="DESCRIÇÃO" placeholder="ex: Um romance muito pica" onChangeText={(value) => handleChange(value, "description")} validate={() => validate("description")} value={inputValues.description}/>
+          <Input icon="image-outline" label="CAPA" onChangeText={(value) => handleChange(value, "cover")} validate={() => validate("cover")} value={inputValues.cover}/>
           <Button title="CADASTRAR" onPress={onSubmit}/>
 
         </View>
@@ -64,6 +74,7 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontSize: 25,
     fontWeight: 'bold',
+    textAlign: 'center'
   },
 
   viewForm: {
