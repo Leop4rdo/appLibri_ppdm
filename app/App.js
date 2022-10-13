@@ -17,6 +17,7 @@ const App = () => {
     // </NavigationContainer>
   
     // <Home />
+    // <Register />
     <BookDetails />
   );
 }

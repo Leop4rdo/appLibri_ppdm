@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import COLORS from '../const/colors'
 import bookService from '../services/book'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons" 
+import { color } from 'react-native-reanimated'
 
 
 const BookDetails = () => {
@@ -33,6 +34,11 @@ const BookDetails = () => {
                 <Text style={styles.bookTitle}>{book.title || <>Carregando...</>}</Text>
                 <Image source={{uri : book.cover}} style={styles.bookCover}/>
                 <Text style={styles.bookDescription}>{book.description}</Text>
+
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity activeOpacity={.8} style={[styles.button, {backgroundColor : COLORS.blue}]}><Icon name='edit' size={16} color='#FFF'/><Text style={styles.buttonText}>Editar</Text></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={.8} style={[styles.button, {backgroundColor : COLORS.red}]}><Icon name='trash' size={16} color='#FFF'/><Text style={styles.buttonText}>Excluir</Text></TouchableOpacity>
+                </View>
             </ScrollView>
         </SafeAreaView>
     )
@@ -71,6 +77,7 @@ const styles = StyleSheet.create({
         borderRadius : 16,
         backgroundColor : '#FFF',
         alignItems : 'center',
+        elevation : 6
     },
 
     bookTitle : {
@@ -90,6 +97,28 @@ const styles = StyleSheet.create({
     bookDescription : {
         width : '100%',
         textAlign : 'justify',
+    },
+
+    buttonContainer : {
+        width : '100%',
+        flexDirection : 'row',
+        justifyContent : 'space-evenly',
+        alignItems : 'center',
+        marginTop : 24
+    },
+
+    button : {
+        paddingHorizontal : 24,
+        paddingVertical : 8,
+        flexDirection : 'row',
+        alignItems : 'center',
+        borderRadius : 16
+    },
+
+    buttonText : {
+        fontSize : 16,
+        color : '#FFF',
+        marginLeft : 8
     }
   });
 

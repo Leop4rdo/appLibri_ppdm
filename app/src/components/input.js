@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         borderWidth: 0.5,
         alignItems: "center",
+        borderRadius : 16,
     },
 
     focusInputContainer : {
