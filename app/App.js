@@ -1,32 +1,24 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-
-// import Login from "./src/telas/Login";
+import BookDetails from "./src/pages/BookDetails";
+import Home from "./src/pages/Home";
 import Register from "./src/pages/Register";
 
 const App = () => {
-
-  const nome = 'SENAI - JANDIRA';
+  const Stack = createNativeStackNavigator()
 
   return (
-    <Register />
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="home" screenOptions={{headerShown : false, animation : 'slide_from_left'}}>
+    //     <Stack.Screen name="home" component={Home}/>
+    //     <Stack.Screen name="add-book" component={Register}/>
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+  
+    // <Home />
+    <BookDetails />
   );
 }
 
-const estilo = StyleSheet.create({
-
-  container: {},
-
-  title: {
-    width: "100%",
-    backgroundColor: "#f00",
-    textAlign: "center",
-    fontSize: 16,
-    lineHeight: 26,
-    color: "#fff",
-    fontWeight: "bold",
-    padding: 16,
-  },
-});
-
-export default App;
+export default App

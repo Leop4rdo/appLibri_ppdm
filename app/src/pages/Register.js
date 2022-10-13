@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native';
+import bookService from '../services/book';
 
 import COLORS from '../const/colors';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons" 
+
 
 import Input from '../components/input';
 import Button from '../components/button';
@@ -21,14 +24,17 @@ const Register = () => {
 
   const validate = (key) => (inputValues[key]) ? true : false
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!validate('title')) return alert('Titulo invalido!');
     if (!validate('description')) return alert('Descrição invalida!');
     if (!validate('cover')) return alert('Capa invalida!');
 
-    alert('Livro cadastrado com sucesso!!!');
+    const res = await bookService.create(inputValues)
 
-    resetState();
+    if (res.hasError) 
+      alert('Erro ao cadastrar livro!')
+    else
+      resetState();
   }
 
   const resetState = () => {
@@ -42,17 +48,25 @@ const Register = () => {
 
   return (
     <SafeAreaView style={styles.safe} >
-      <ScrollView style={styles.scroll}>
+      <View style={styles.header}>
+        <View style={{flexDirection : 'row', alignItems : 'center'}}>
+          <Pressable>
+            <Icon style={{marginRight : 8}} color={COLORS.blue} size={24} name="arrow-left"/>
+          </Pressable>
+          <Text style={styles.title}>Novo livro</Text>
+        </View>
+      </View>
 
-        <Text style={styles.textTitle}>CADASTRO DE LIVROS</Text>
-
+      <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.viewForm}>
+          <View style={{marginBottom : 48}}>
+            <Input icon="book-outline" label="TITULO" placeholder="ex: O morro dos ventos uivantes" onChangeText={(value) => handleChange(value, "title")} validate={() => validate("title")} value={inputValues.title}/>
+            <Input icon="card-text-outline" label="DESCRIÇÃO" placeholder="ex: Um romance muito pica" onChangeText={(value) => handleChange(value, "description")} validate={() => validate("description")} value={inputValues.description}/>
+            <Input icon="image-outline" label="CAPA" onChangeText={(value) => handleChange(value, "cover")} validate={() => validate("cover")} value={inputValues.cover}/>
+          </View>
+          
 
-          <Input icon="book-outline" label="TITULO" placeholder="ex: O morro dos ventos uivantes" onChangeText={(value) => handleChange(value, "title")} validate={() => validate("title")} value={inputValues.title}/>
-          <Input icon="card-text-outline" label="DESCRIÇÃO" placeholder="ex: Um romance muito pica" onChangeText={(value) => handleChange(value, "description")} validate={() => validate("description")} value={inputValues.description}/>
-          <Input icon="image-outline" label="CAPA" onChangeText={(value) => handleChange(value, "cover")} validate={() => validate("cover")} value={inputValues.cover}/>
           <Button title="CADASTRAR" onPress={onSubmit}/>
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -62,23 +76,52 @@ const Register = () => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#EFEFEF",
   },
 
   scroll: {
-    paddingTop: 50,
-    paddingHorizontal: 20,
+    height : '100%',
+    width : '100%',
+    padding : 24,
+
+    alignItems : 'center',
+    justifyContent : 'center',
   },
 
-  textTitle: {
-    color: COLORS.black,
+  header : {
+    width : '100%',
+    height : 64,
+    paddingHorizontal : 32,
+
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    alignItems : 'center',
+
+    backgroundColor : '#FFF',
+
+    elevation : 8
+  },
+
+  title : {
+    color: COLORS.blue,
     fontSize: 25,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   viewForm: {
-    marginVertical: 20,
+    marginHorizontal: 12,
+    marginVertical : 48,
+    padding : 12,
+
+    borderRadius : 12,
+
+    backgroundColor : '#FFF',
+
+    elevation : 8,
+
+    justifyContent : 'space-between',
+    alignItems : 'center',
   },
 });
 

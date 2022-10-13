@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
 
     button: {
         height: 55,
-        width: '100%',
+        width: 200,
         backgroundColor: COLORS.blue,
         justifyContent: "center",
         alignItems: "center",
         marginVertical: 20,
+        borderRadius : 24
     },
 
     title: {
